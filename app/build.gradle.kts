@@ -12,6 +12,8 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+
+    kotlin("plugin.serialization") version "1.5.0"
 }
 
 repositories {
@@ -34,6 +36,11 @@ dependencies {
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
+    implementation("com.charleskorn.kaml:kaml:0.34.0")
+
+    // https://mvnrepository.com/artifact/com.charleskorn.kaml/kaml
+    runtimeOnly(group= "com.charleskorn.kaml", name= "kaml", version= "0.34.0")
 }
 
 application {
