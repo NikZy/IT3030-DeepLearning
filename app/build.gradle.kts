@@ -17,6 +17,8 @@ plugins {
 }
 
 repositories {
+    // add Spek 2 development repository
+    maven { url = uri("https://dl.bintray.com/spekframework/spek-dev") }
     // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
@@ -39,11 +41,29 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
     implementation("com.charleskorn.kaml:kaml:0.34.0")
 
+    // Testing
+    testImplementation("org.spekframework.spek2:spek-dsl-jvm:2.0.16")
+    testRuntimeOnly("org.spekframework.spek2:spek-runner-junit5:2.0.15")
+
+    // spek requires kotlin-reflect, can be omitted if already in the classpath
+    testRuntimeOnly("org.jetbrains.kotlin:kotlin-reflect:1.4.31")
+
+    // include JUnit 5 assertions
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.2.0")
+
     // https://mvnrepository.com/artifact/com.charleskorn.kaml/kaml
     runtimeOnly(group= "com.charleskorn.kaml", name= "kaml", version= "0.34.0")
 }
 
+// setup the test task
+
 application {
     // Define the main class for the application.
     mainClass.set("IT3030.DeepLearning.AppKt")
+}
+
+tasks.test {
+    useJUnitPlatform {
+        includeEngines("spek2")
+    }
 }
