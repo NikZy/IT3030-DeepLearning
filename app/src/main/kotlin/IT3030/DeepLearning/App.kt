@@ -3,11 +3,14 @@
  */
 package IT3030.DeepLearning
 
+import IT3030.DeepLearning.Config.ConfigParser
+
 class App {
     val greeting: String
         get() {
             return "Hello World!"
         }
+    val config = ConfigParser("config.yml")
 }
 
 fun main() {
