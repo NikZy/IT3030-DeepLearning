@@ -9,19 +9,14 @@ import java.lang.Exception
 
 class ConfigParser(val fileName: String) {
 
-  fun readFile() {
-    try {
+  val config: Config = parseString(readFile())
 
-    } catch (e: Exception) {
-      // TODO: Logger: Swap with logger
-      println(e)
-    }
-    val fileString = File(this.fileName)
-      .readText()
-    println(fileString)
-
-    val config = Yaml.default.decodeFromString(Config.serializer(),fileString)
+  private fun readFile(): String {
+      val fileString = File(this.fileName)
+        .readText()
+      return fileString
   }
+  private fun parseString(str: String): Config = Yaml.default.decodeFromString(Config.serializer(), str)
 
 }
 @Serializable
@@ -43,5 +38,6 @@ data class Config (
 
 fun main() {
   val configParser = ConfigParser("config.yml")
-  configParser.readFile()
+  println("Hei")
+
 }
