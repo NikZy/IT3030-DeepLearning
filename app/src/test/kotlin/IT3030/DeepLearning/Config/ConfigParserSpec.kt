@@ -84,13 +84,13 @@ class ConfigParserSpec : Spek({
           hiddenLayers = listOf(
           HiddenLayer(
               size = listOf(20, 20),
-              activation_function = "tanh"
+              activation_function = ActivationFunctionEnum.tanh
             )
           )
         )
         )
         // Assert
-        assertEquals(expected.neuralnet.hiddenLayers[0].activation_function, "tanh")
+        assertEquals(expected.neuralnet.hiddenLayers[0].activation_function.name, "tanh")
       }
 
 
