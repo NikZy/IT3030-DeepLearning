@@ -1,0 +1,9 @@
+neuralnet:
+  input:
+    - 20
+    - 30
+
+  hiddenLayers:
+    - size:
+        -  20
+      activation_function: tanh
