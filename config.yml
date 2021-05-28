@@ -5,5 +5,18 @@ neuralnet:
 
   hiddenLayers:
     - size:
-        -  20
+        - 20
+        - 20
       activation_function: tanh
+      weight_regularization: glorot
+    - size:
+        - 8
+        - 8
+      activation_function: tanh
+      weight_regularization: glorot
+  output:
+    size:
+      - 5
+    weight_regularization: glorot
+    activation_function: softmax
+
