@@ -11,7 +11,7 @@ class ConfigParserSpec : Spek({
 
 
 
-    describe("#${ConfigParser::readFile.name}") {
+    describe("ConfigParser") {
       assertTrue { true }
 
       describe("It can parse yaml correctly") {
@@ -59,15 +59,26 @@ class ConfigParserSpec : Spek({
         // Arrange
         val configYml = """
                         neuralnet:
-                          input: 
+                          input:
                             - 20
                             - 30
-                          
+
                           hiddenLayers:
                             - size:
                                 - 20
                                 - 20
                               activation_function: tanh
+                              weight_regularization: glorot
+                            - size:
+                                - 8
+                                - 8
+                              activation_function: tanh
+                              weight_regularization: glorot
+                          output:
+                            size:
+                              - 5
+                            weight_regularization: glorot
+                            activation_function: softmax
                         """.trimIndent()
         println(configYml)
 
@@ -82,11 +93,18 @@ class ConfigParserSpec : Spek({
           Neuralnet(
           input = listOf(20, 30),
           hiddenLayers = listOf(
-          HiddenLayer(
+            HiddenLayer(
               size = listOf(20, 20),
-              activation_function = ActivationFunctionEnum.tanh
+              activation_function = ActivationFunctionEnum.tanh,
+              weight_regularization = WeightRegularizationEnum.valueOf("glorot")
             )
-          )
+
+          ),
+            output = Output(
+              size = listOf(5),
+              activation_function = ActivationFunctionEnum.softmax,
+              weight_regularization = WeightRegularizationEnum.valueOf("glorot")
+            )
         )
         )
         // Assert
