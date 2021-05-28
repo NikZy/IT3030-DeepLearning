@@ -52,7 +52,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.2.0")
 
     // https://mvnrepository.com/artifact/com.charleskorn.kaml/kaml
-    runtimeOnly(group= "com.charleskorn.kaml", name= "kaml", version= "0.34.0")
+    runtimeOnly(group = "com.charleskorn.kaml", name = "kaml", version = "0.34.0")
 }
 
 // setup the test task
