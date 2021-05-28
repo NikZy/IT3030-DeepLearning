@@ -1,27 +1,47 @@
 package IT3030.DeepLearning.Config
 
 import com.charleskorn.kaml.Yaml
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Serializer
 import java.io.File
+import java.lang.Exception
 
 class ConfigParser(val fileName: String) {
 
   fun readFile() {
-    // TODO: add try catch
+    try {
+
+    } catch (e: Exception) {
+      // TODO: Logger: Swap with logger
+      println(e)
+    }
     val fileString = File(this.fileName)
       .readText()
+    println(fileString)
+
+    val config = Yaml.default.decodeFromString(Config.serializer(),fileString)
   }
 
 }
-
 @Serializable
-data class Test(val test: String)
+data class HiddenLayer(
+  val size: List<Int>,
+  // TODO: Swap with Enums
+  val activation_function: String
+)
+@Serializable
+data class Neuralnet (
+  val input: List<Int>,
+  val hiddenLayers: List<HiddenLayer>,
+)
+@Serializable
+data class Config (
+  val neuralnet: Neuralnet
+)
+
 
 fun main() {
-  val test = Test("Hei")
-
-  val jaja= Yaml.default.encodeToString(Test.serializer(), test)
-
-  println(jaja)
+  val configParser = ConfigParser("config.yml")
+  configParser.readFile()
 }
