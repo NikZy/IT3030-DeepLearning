@@ -28,7 +28,7 @@ class ConfigParser(val fileName: String) {
 data class HiddenLayer(
   val size: List<Int>,
   // TODO: Swap with Enums
-  val activation_function: String
+  val activation_function: ActivationFunctionEnum
 )
 @Serializable
 data class Neuralnet (
