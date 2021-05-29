@@ -65,6 +65,9 @@ application {
     mainClass.set("IT3030.DeepLearning.AppKt")
 }
 
+val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
+compileKotlin.kotlinOptions.jvmTarget = "1.8"
+
 tasks.test {
     useJUnitPlatform {
         includeEngines("spek2")
