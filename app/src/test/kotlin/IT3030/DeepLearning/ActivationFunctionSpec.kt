@@ -5,7 +5,6 @@ import org.spekframework.spek2.style.specification.describe
 import kotlin.math.exp
 import kotlin.test.assertEquals
 
-
 class ActivationFunctionSpec : Spek({
 
     describe("ActivationFunction") {
