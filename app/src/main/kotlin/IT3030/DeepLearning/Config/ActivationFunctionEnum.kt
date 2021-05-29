@@ -4,4 +4,5 @@ enum class ActivationFunctionEnum {
     tanh,
     linear,
     softmax,
+    none,
 }

@@ -19,6 +19,7 @@ plugins {
 repositories {
     // add Spek 2 development repository
     maven { url = uri("https://dl.bintray.com/spekframework/spek-dev") }
+    maven { url = uri("https://kotlin.bintray.com/kotlin-datascience") }
     // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
@@ -29,6 +30,8 @@ dependencies {
 
     // Use the Kotlin JDK 8 standard library.
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    implementation("org.jetbrains:kotlin-numpy:0.1.5")
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:30.0-jre")
@@ -61,6 +64,9 @@ application {
     // Define the main class for the application.
     mainClass.set("IT3030.DeepLearning.AppKt")
 }
+
+val compileKotlin: org.jetbrains.kotlin.gradle.tasks.KotlinCompile by tasks
+compileKotlin.kotlinOptions.jvmTarget = "1.8"
 
 tasks.test {
     useJUnitPlatform {

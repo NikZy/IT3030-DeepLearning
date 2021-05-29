@@ -4,15 +4,26 @@
 package IT3030.DeepLearning
 
 import IT3030.DeepLearning.Config.ConfigParser
+import IT3030.DeepLearning.NeuralnetWork.NeuralNetwork
 
 class App {
     val greeting: String
         get() {
             return "Hello World!"
         }
-    val config = ConfigParser("config.yml")
+    val config = ConfigParser("config.yml").config
+    val neuralnet = NeuralNetwork(
+        inputLayer = config.neuralnet.input,
+        hiddenLayers = config.neuralnet.hiddenLayers,
+        outputLayer = config.neuralnet.output,
+    )
+  fun run() {
+      println(neuralnet.forwardPass(listOf(1.0,2.0,3.0,4.0)))
+  }
 }
 
 fun main() {
-    println(App().greeting)
+    val app = App()
+    println(app.run())
+
 }
